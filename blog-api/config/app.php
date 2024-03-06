@@ -5,11 +5,6 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
-    'providers' => [
-        // Diğer servis sağlayıcıları...
-        Laravel\Sanctum\SanctumServiceProvider::class,
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Application Name

@@ -1,6 +1,12 @@
 # PHP 8.2.0 imajını kullanalım
 FROM php:8.2.0-fpm
 
+# Install ICU and necessary tools
+RUN apt-get update && apt-get install -y libicu-dev
+
+# Install PHP extensions
+RUN docker-php-ext-install intl
+
 # Gerekli bağımlılıkları yükleyin
 RUN apt-get update && apt-get install -y \
     libzip-dev \
