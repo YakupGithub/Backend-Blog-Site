@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use Illuminate\Support\Str;
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Filament\Resources\Closure;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -28,7 +29,7 @@ class CategoryResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->reactive()
-                    ->afterStateUpdated(function ($set, $state) {
+                    ->afterStateUpdated(function($set, $state) {
                         $set('slug', Str::slug($state));
                     }),
                 Forms\Components\TextInput::make('slug')
@@ -36,6 +37,7 @@ class CategoryResource extends Resource
                     ->maxLength(255),
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
