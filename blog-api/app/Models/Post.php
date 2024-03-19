@@ -19,6 +19,10 @@ class Post extends Model
         'user_id',
     ];
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public function user() /**
      * Get the user that owns the Post
      *
