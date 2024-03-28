@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +17,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/comment', [CommentController::class, 'test'])->name('comments.store');
