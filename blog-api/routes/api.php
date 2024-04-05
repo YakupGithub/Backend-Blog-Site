@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,10 @@ Route::post('/login', [UserController::class, 'login'])->name('user.login');
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 Route::post('/logout', [UserController::class, 'logout']);
 
-Route::get('/comment', [HomeController::class, 'comment']);
-Route::post('/comment', [HomeController::class, 'comment']);
+Route::get('/allCategories', [HomeController::class, 'allCategories']);
+Route::get('/allBlogs', [HomeController::class, 'allBlogs']);
+Route::get('/allCategoriesAndBlogs', [HomeController::class, 'CategoriesAndPosts']);
+Route::get('/getPost/{post}', [HomeController::class, 'post']);
 
-Route::get('/allCategories', [HomeController::class, 'category']);
+Route::get('/allComments', [CommentController::class, 'allComments']);
+Route::get('/createComment', [CommentController::class, 'createComment']);

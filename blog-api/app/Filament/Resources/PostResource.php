@@ -8,6 +8,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,11 +33,10 @@ class PostResource extends Resource
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required(),
-                Forms\Components\Select::make('categories')
-                    ->multiple()
-                    ->relationship('categories', 'title')
+                Forms\Components\Select::make('category_id')
+                    ->relationship('category', 'title')
                     ->required(),
-                Forms\Components\FileUpload::make('thumbnail'),
+                Forms\Components\TextInput::make('thumbnail'),
                 Forms\Components\DateTimePicker::make('published_at')
                     ->required(),
                 Forms\Components\RichEditor::make('body')
@@ -51,7 +51,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('thumbnail')
+                Tables\Columns\TextColumn::make('thumbnail')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),

@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendCommentNotification;
 use Illuminate\Http\Request;
-use App\Model\Comment;
+use App\Models\Comment;
 use App\Events\CommentAdded;
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
+    public function allComments()
+    {
+        $data = ['comments' => Comment::select('*')->get()];
+        return response()->json($data);
+    }
+
+    public function createComment(Request $request)
     {
         $request->validate([
             'comment' => 'required',

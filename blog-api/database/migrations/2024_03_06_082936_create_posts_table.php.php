@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,10 +18,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('thumbnail')->nullable();
-            $table->longText('body');
+            $table->text('body');
             $table->boolean('active');
             $table->datetime('published_at');
             $table->foreignIdFor(User::class, 'user_id');
+            $table->foreignIdFor(Category::class, 'category_id');
             $table->timestamps();
         });
     }
