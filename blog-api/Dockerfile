@@ -29,5 +29,9 @@ COPY . .
 # Gerekirse proje bağımlılıklarını yükleyin
 RUN composer install
 
+# Crontab dosyasını kopyalayın ve izinleri ayarlayın
+# COPY docker/crontab /etc/cron.d/crontab
+# RUN chmod 0644 /etc/cron.d/crontab
+
 # Uygulamayı ayağa kaldırın
 CMD php artisan serve --host=0.0.0.0 --port=80

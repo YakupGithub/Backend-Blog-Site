@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Panel;
 
 class User extends Authenticatable implements FilamentUser
@@ -37,6 +38,11 @@ class User extends Authenticatable implements FilamentUser
 
     public function isEditor(){
         return $this->role === self::ROLE_EDITOR;
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 
     /**
