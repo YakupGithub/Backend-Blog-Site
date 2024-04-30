@@ -20,15 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [UserController::class, 'login'])->name('user.login');
 Route::post('/register', [UserController::class, 'register'])->name('user.register');
 Route::post('/logout', [UserController::class, 'logout']);
-
-Route::get('/getPost/{post}', [HomeController::class, 'post']);
+Route::get('/getPost/{slug}', [HomeController::class, 'post']);
 Route::get('/getCategory/{slug}', [HomeController::class, 'category']);
-Route::get('/getUser/{id}', [UserController::class, 'user'])->name('user.edit');
-Route::put('/updateUser/{id}', [UserController::class, 'update']);
-
+Route::get('/getUser', [UserController::class, 'user'])->name('user.edit');
+Route::put('/updateUser', [UserController::class, 'update']);
 Route::get('/allCategories', [HomeController::class, 'allCategories']);
 Route::get('/allBlogs', [HomeController::class, 'allBlogs']);
 Route::get('/allCategoriesAndBlogs', [HomeController::class, 'CategoriesAndPosts']);
-
 Route::get('/allComments', [CommentController::class, 'allComments']);
 Route::post('/createComment', [CommentController::class, 'createComment']);

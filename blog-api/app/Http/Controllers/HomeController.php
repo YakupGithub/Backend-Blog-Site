@@ -20,12 +20,18 @@ class HomeController extends Controller
         return response()->json($data);
     }
 
-    public function post(Post $post)
+    public function post(Post $slug)
     {
+        // $post->load('user', 'category');
+        // $post->body = strip_tags($post->body);
+
+        // return response()->json($post);
+
+        $post = Post::whereSlug($slug)->first() ?? abort(403, 'Böyle bir yazı bulunamadı');
         $post->load('user', 'category');
         $post->body = strip_tags($post->body);
-
-        return response()->json($post);
+        $data['post'] = $post;
+        return response()->json($data);
     }
 
     public function category($slug)
