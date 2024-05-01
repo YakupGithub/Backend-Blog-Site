@@ -87,28 +87,20 @@ class UserController extends Controller
         return response()->json(['status' => 'success', 'message' => 'Çıkış işlemi başarılı'], 200);
     }
 
-    public function user($id)
+    // public function user()
+    // {
+    //     $user = Auth::user();
+    //     return response()->json($user);
+    // }
+
+    public function update(Request $request)
     {
-        $user = User::find($id);
+        $user = Auth::user();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
 
-        return response()->json($user);
-    }
-
-    public function update($id, Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-        ]);
-
-        $user = User::find($id);
-        $update = $user->update($data);
-
-        if ($update) {
-            return response()->json(['message' => 'Kullanıcı başarıyla güncellendi'], 200);
-        } else {
-            return response()->json(['error' => 'Girilen bilgiler eksik veya hatalı'], 404);
-        }
+        return redirect()->back()->with('success', 'Profil güncellendi!');
     }
 
 }
